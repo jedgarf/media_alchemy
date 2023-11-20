@@ -1,9 +1,11 @@
 body {
     /* background-color: black !important; */
+    transition: background-color 0.5s, color 0.5s;
 }
 
 .page_content {
     /* min-height: 500px; */
+    /* border-bottom: 1px solid #dee2e6; */
 }
 
 .my-navbar {
@@ -11,10 +13,19 @@ body {
     /* Adjust color as needed */
 }
 
+.footer {
+    border-top: 1px solid #dee2e6;
+}
+
 .text-link {
     text-decoration-line: none;
-    color: #dee2e6;
+    /* color: #FBFBFB; */
     border-bottom: 1px dotted;
+}
+
+.dark-mode {
+    background-color: #333 !important;
+    color: #fff !important;
 }
 
 .spinner {

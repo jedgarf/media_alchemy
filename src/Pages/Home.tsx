@@ -11,12 +11,19 @@ import { title } from "../Config/settings.config";
 import { mainLogo } from "../Config/images.config";
 
 // Pages
+import YoutubeDownloadProcess from "./Youtube/YoutubeDownloadProcess";
 import YoutubeSecondSection from "./Youtube/YoutubeSecondSection";
+
+// Components
+import { ThemeProvider, useTheme } from '../Components/ThemeContext';
 
 // Services
 import { youtubeLinkInfo, youtubeAudioDownload, youtubeVideoDownload } from "../Services/YoutubeServices";
+import { transform } from 'typescript';
 
 const Home: React.FC = () => {
+
+    const { theme, toggleTheme } = useTheme();
 
     const linkRef = useRef<HTMLInputElement>(null);
     const [isLoadInfo, setIsLoadInfo] = useState<boolean>(true);
@@ -70,17 +77,18 @@ const Home: React.FC = () => {
     
     return (
         <>
-            <div className='page_content bg-light' style={{ height: '65vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div className={`page_content ${theme === 'dark' ? 'bg-dark' : 'bg-light'}`} style={{ paddingTop: '7%', paddingBottom: '5%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <Container fluid="lg">
                     <Row>
                         <Col sm={12}>
                             <center>
-                                <h2>Youtube Link to MP3/MP4</h2>
+                                <h2><FontAwesomeIcon icon={["fab", "youtube"]} color='#DC4C64' style={{ fontSize: 100 }} /></h2>
+                                <p style={{ textTransform: 'uppercase' }} className={`${theme === 'dark' ? 'text-light' : 'text-dark'}`}>You can convert and download to mp3 or mp4 with no deep shit ads.</p>
                             </center>
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm={12} style={{ marginTop: 30 }} align='center'>
+                        <Col sm={12} style={{ marginTop: 10 }} align='center'>
                             <form onSubmit={(e) => generateYoutubeLink(e)}>
                                 <InputGroup className="mb-3" style={{ maxWidth: '700px' }}>
                                     <Form.Control
@@ -96,15 +104,15 @@ const Home: React.FC = () => {
                                 </InputGroup>
                             </form>
                         </Col>
-                        <Col sm={12} style={{ marginTop: 30 }} align='center'>
-                            <Container fluid  style={{ maxWidth: '1000px', fontSize: '13px' }}>
+                        <Col sm={12} style={{ marginTop: 30, marginBottom: 140 }} align='center'>
+                            <Container fluid  style={{ maxWidth: '1000px', fontSize: '13px' }} className={`${theme === 'dark' ? 'text-light' : 'text-dark'}`}>
                                 {youtubeInfo?.title ? (
                                     <Row>
                                         <Col sm={12} md={5} align='center' className='mb-3'>
-                                            <iframe title={youtubeInfo?.title} src={youtubeInfo?.embed?.iframeUrl} width={270} height={200} allowFullScreen></iframe>
+                                            <iframe title={youtubeInfo?.title} src={youtubeInfo?.embed?.iframeUrl} width={'100%'} height={200} allowFullScreen></iframe>
                                         </Col>
                                         <Col sm={12} md={7} align='left'>
-                                            <table style={{ marginBottom: '20px' }}>
+                                            <table cellPadding={5} style={{ marginBottom: '20px' }}>
                                                 <tr>
                                                     <th>Title:</th>
                                                     <td>{youtubeInfo?.title}</td>
@@ -122,20 +130,19 @@ const Home: React.FC = () => {
                                                     <td>{youtubeInfo?.uploadDate}</td>
                                                 </tr>
                                             </table>
-                                            <center>
-                                                <ButtonGroup>
-                                                    <Button onClick={downloadAudio}><FontAwesomeIcon icon="file-audio" /> MP3</Button>
-                                                    <Button onClick={downloadVideo}><FontAwesomeIcon icon="file-video" /> MP4</Button>
-                                                </ButtonGroup>
-                                            </center>
+                                            <ButtonGroup style={{ float: 'right' }}>
+                                                <Button onClick={downloadAudio}><FontAwesomeIcon icon="file-audio" /> MP3</Button>
+                                                <Button onClick={downloadVideo}><FontAwesomeIcon icon="file-video" /> MP4</Button>
+                                            </ButtonGroup>
                                         </Col>
                                     </Row>
-                                ) : ("")}
+                                ) : (<><br/><br/><br/></>)}
                             </Container>
                         </Col>
                     </Row>
                 </Container>
             </div>
+            <YoutubeDownloadProcess/>
             <YoutubeSecondSection/>
         </>
     )

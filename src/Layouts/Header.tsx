@@ -1,21 +1,27 @@
 import React from 'react';
 
 // Bootstrap Components
-import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown, Image, Button } from 'react-bootstrap';
 
 // Font Awesome Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// Components
+import { ThemeProvider, useTheme } from '../Components/ThemeContext';
 
 // Config
 import { title } from "../Config/settings.config";
 import { mainLogo } from "../Config/images.config";
 const Header: React.FC = () => {
+
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <>
-      <div className="bg-dark text-light p-2">
-        Welcome to {title}!
+      <div className={`bg-dark text-light p-2`}>
+        ✨ Welcome to {title}!
       </div>
-      <Navbar collapseOnSelect fixed="top" sticky="top" expand="lg" className="my-navbar bg-body-tertiary justify-content-between" data-bs-theme="primary">
+      <Navbar collapseOnSelect fixed="top" sticky="top" expand="lg" className={`my-navbar bg-body-tertiary justify-content-between`} data-bs-theme={`${theme === 'dark' ? 'dark' : 'light'}`}>
         <Container>
           <Navbar.Brand href="/">
             <Image
@@ -43,13 +49,14 @@ const Header: React.FC = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Nav hidden>
-              <Nav.Link href="/android_apps">Download Android</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                Dank memes
+            <Nav>
+              {/* <Nav.Link href="/android_apps">Download Android</Nav.Link> */}
+              <Nav.Link>
+                <Button onClick={toggleTheme}>{theme === 'dark' ? <FontAwesomeIcon icon={"lightbulb"} /> : <FontAwesomeIcon icon={"moon"} />}</Button>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+
         </Container>
       </Navbar>
     </>

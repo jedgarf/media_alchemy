@@ -7,6 +7,8 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
+import { ThemeProvider } from './Components/ThemeContext';
+
 // Import Font Awesome Library
 import "./Utilities/FontAwesomeIcons";
 
@@ -15,9 +17,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+      <BrowserRouter>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
   </React.StrictMode>
 );
 
