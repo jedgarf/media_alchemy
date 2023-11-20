@@ -12,7 +12,7 @@ if (isLocalhost) {
 var apiConfig = {
     "api_key": process.env.REACT_APP_API_KEY,
     "override_cors": process.env.REACT_APP_OVERRIDE_CORS + "/",
-    "base_url": base_url + "/v2/youtube_downloader",
+    "base_url": base_url + "/v2",
 }
 
 export default apiConfig;

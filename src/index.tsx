@@ -5,12 +5,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './AppRoutes';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { init } from 'console-ban';
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from './Components/ThemeContext';
 
 // Import Font Awesome Library
 import "./Utilities/FontAwesomeIcons";
+
+if (process.env.REACT_APP_NODE_ENV === 'PRODUCTION') {
+  init({
+    redirect: '/unavailable',
+  })
+  disableReactDevTools();
+  console.log = () => {}
+  console.info = () => {}
+  console.error = () => {}
+  console.debug = () => {}
+  console.clear();
+}
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

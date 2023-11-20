@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import axios, { AxiosResponse } from 'axios';
 
 // Bootstrap Components
 import { Container, Row, Col, Image, Form, InputGroup, Button, ListGroup, ButtonGroup } from 'react-bootstrap';
@@ -19,7 +20,6 @@ import { ThemeProvider, useTheme } from '../Components/ThemeContext';
 
 // Services
 import { youtubeLinkInfo, youtubeAudioDownload, youtubeVideoDownload } from "../Services/YoutubeServices";
-import { transform } from 'typescript';
 
 const Home: React.FC = () => {
 
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
             let link = linkRef.current ? linkRef.current.value : "";
             setIsLoadInfo(true);
             await youtubeLinkInfo(link).then((response) => {
-                console.log(response.data.videoDetails);
+                // console.log(response.data.videoDetails);
                 setYoutubeInfo(response.data.videoDetails);
                 
             });
@@ -47,11 +47,19 @@ const Home: React.FC = () => {
     const downloadAudio = async (e: any) => {
         e.preventDefault();
         try {
-            let link = linkRef.current ? linkRef.current.value : "";
-            await youtubeAudioDownload(link).then((response) => {
-                console.log(response);
-                
-            });
+            let videoUrl = linkRef.current ? linkRef.current.value : "";
+            const response: AxiosResponse<any> = await youtubeAudioDownload(videoUrl);
+            // console.log(response.data);
+            // Create a blob URL and initiate a download
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${youtubeInfo?.title.replace(/[\/\?<>\\:\*\|"]/g, '_')}.mp3`);
+            document.body.appendChild(link);
+            link.click();
+
+            // Clean up the blob URL
+            window.URL.revokeObjectURL(url);
         } catch (error) {
             console.log(error);
         }
@@ -60,18 +68,26 @@ const Home: React.FC = () => {
     const downloadVideo = async (e: any) => {
         e.preventDefault();
         try {
-            let link = linkRef.current ? linkRef.current.value : "";
-            await youtubeVideoDownload(link).then((response) => {
-                console.log(response);
-                
-            });
+            let videoUrl = linkRef.current ? linkRef.current.value : "";
+            const response: AxiosResponse<any> = await youtubeVideoDownload(videoUrl);
+            // console.log(response.data);
+            // Create a blob URL and initiate a download
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${youtubeInfo?.title.replace(/[\/\?<>\\:\*\|"]/g, '_')}.mp4`);
+            document.body.appendChild(link);
+            link.click();
+
+            // Clean up the blob URL
+            window.URL.revokeObjectURL(url);
         } catch (error) {
             console.log(error);
         }
     }
 
     useEffect(() => {
-      console.log(youtubeInfo);
+    //   console.log(youtubeInfo);
       setIsLoadInfo(false);
     }, [youtubeInfo]);
     
@@ -130,10 +146,10 @@ const Home: React.FC = () => {
                                                     <td>{youtubeInfo?.uploadDate}</td>
                                                 </tr>
                                             </table>
-                                            <ButtonGroup style={{ float: 'right' }}>
-                                                <Button onClick={downloadAudio}><FontAwesomeIcon icon="file-audio" /> MP3</Button>
-                                                <Button onClick={downloadVideo}><FontAwesomeIcon icon="file-video" /> MP4</Button>
-                                            </ButtonGroup>
+                                        </Col>
+                                        <Col sm={12} md={12}>
+                                            <Button onClick={downloadAudio} style={{ marginRight: 10 }}><FontAwesomeIcon icon="file-audio" /> MP3</Button>
+                                            <Button onClick={downloadVideo}><FontAwesomeIcon icon="file-video" /> MP4</Button>
                                         </Col>
                                     </Row>
                                 ) : (<><br/><br/><br/></>)}

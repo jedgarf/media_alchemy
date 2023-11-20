@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 // Bootstrap Components
 import { Container, Nav, Navbar, NavDropdown, Image, Button } from 'react-bootstrap';
@@ -12,7 +13,12 @@ import { ThemeProvider, useTheme } from '../Components/ThemeContext';
 // Config
 import { title } from "../Config/settings.config";
 import { mainLogo } from "../Config/images.config";
-const Header: React.FC = () => {
+
+interface HeaderTypes {
+  pageName: string
+}
+
+const Header: React.FC<HeaderTypes> = ({ pageName }) => {
 
   const { theme, toggleTheme } = useTheme();
 
@@ -35,8 +41,8 @@ const Header: React.FC = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/" className='active'><FontAwesomeIcon icon={["fab", "youtube"]} color='#DC4C64' /> Youtube</Nav.Link>
-              <Nav.Link href="/facebook"><FontAwesomeIcon icon={["fab", "facebook"]} color='#3B71CA' /> Facebook</Nav.Link>
+              <Nav.Link as={Link} to="/" className={pageName === "youtube" ? 'active' : ''}><FontAwesomeIcon icon={["fab", "youtube"]} color='#DC4C64' /> Youtube</Nav.Link>
+              <Nav.Link as={Link} to="/facebook" className={pageName === "facebook" ? 'active' : ''}><FontAwesomeIcon icon={["fab", "facebook"]} color='#3B71CA' /> Facebook</Nav.Link>
               <NavDropdown title="Dropdown" id="collapsible-nav-dropdown" hidden>
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
