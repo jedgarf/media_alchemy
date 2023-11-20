@@ -12,13 +12,13 @@ const youtubeLinkInfo = async (link) => {
 
 const youtubeAudioDownload = async (link) => {
 
-    const results = await axios.get(`${url}/mp3?videoURL=${link}`);
+    const results = await axios.get(`${url}/mp3?videoURL=${link}`, { responseType: Blob });
     return results;
 };
 
 const youtubeVideoDownload = async (link) => {
 
-    const results = await axios.get(`${url}/mp4?videoURL=${link}`);
+    const results = await axios.get(`${url}/mp4?videoURL=${link}`, { responseType: Blob });
     return results;
 };
 
