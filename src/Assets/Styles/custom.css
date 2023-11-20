@@ -1,0 +1,33 @@
+body {
+    /* background-color: black !important; */
+}
+
+.page_content {
+    /* min-height: 500px; */
+}
+
+.my-navbar {
+    border-bottom: 1px solid #dee2e6;
+    /* Adjust color as needed */
+}
+
+.text-link {
+    text-decoration-line: none;
+    color: #dee2e6;
+    border-bottom: 1px dotted;
+}
+
+.spinner {
+    animation: spin infinite 5s linear;
+    /*You can increase or decrease the timer (5s) to 
+     increase or decrease the speed of the spinner*/
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

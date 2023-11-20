@@ -3,42 +3,42 @@
     "short_name": "Media Alchemy",
     "description": "Online Converter Site",
     "icons": [{
-            "src": "images/logo_square144x144.ico",
+            "src": "images/logo-only.ico",
             "sizes": "64x64 32x32 24x24 16x16",
             "type": "image/x-icon"
         },
         {
-            "src": "images/logo_square192x192.png",
+            "src": "images/logo-only.png",
             "type": "image/png",
             "sizes": "192x192",
             "purpose": "any"
         },
         {
-            "src": "images/logo_square512x512.png",
+            "src": "images/logo-only.png",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "any"
         },
         {
-            "src": "images/logo_square144x144.png",
+            "src": "images/logo-only.png",
             "type": "image/png",
             "sizes": "144x144",
             "purpose": "any"
         },
         {
-            "src": "images/logo_square192x192.png",
+            "src": "images/logo-only.png",
             "type": "image/png",
             "sizes": "192x192",
             "purpose": "maskable"
         },
         {
-            "src": "images/logo_square512x512.png",
+            "src": "images/logo-only.png",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "maskable"
         },
         {
-            "src": "images/logo_square144x144.png",
+            "src": "images/logo-only.png",
             "type": "image/png",
             "sizes": "144x144",
             "purpose": "maskable"
