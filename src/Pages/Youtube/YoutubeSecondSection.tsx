@@ -39,7 +39,7 @@ const YoutubeSecondSection: React.FC = () => {
                     </Col>
                     <Col sm={12} md={6}>
                         <h5 style={{ textAlign: 'justify' }}><b>Youtube.com</b> is the largest video sharing platform on the Internet. Every day millions of new videos are added. You can find all kinds of videos but YouTube does not offer a FREE downloading service for these videos.<br/>
-                        <b>{title}</b> allows you to download your favorite YouTube videos as MP3 (audio) or MP4 (video) files in the most efficient way. You are able to use <b>{title}</b> on any device – it is optimized to work on desktop, tablet and mobile devices. There is also no additional software or app needed.</h5>
+                        <b>{title}</b> allows you to download your favorite YouTube videos as audio or video files in the most efficient way. You are able to use <b>{title}</b> on any device – it is optimized to work on desktop, tablet and mobile devices. There is also no additional software or app needed.</h5>
                     </Col>
                 </Row>
             </Container>

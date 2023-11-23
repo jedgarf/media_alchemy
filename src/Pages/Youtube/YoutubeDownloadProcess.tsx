@@ -29,7 +29,7 @@ const YoutubeDownloadProcess: React.FC = () => {
                     <Col sm={12} md={12}>
                         <h5>1. Open <a href='https://www.youtube.com/' target='__blank'>youtube.com</a> and search for the video you would like to download.</h5>
                         <h5>2. When you find the video, click on it and wait until it starts playing. Then, just copy the video URL from your browser address bar.</h5>
-                        <h5>3. Open <b>{title}</b> and paste the video URL in our converter and click convert button. After that you will be able to choose the download format. You can choose between MP3 or MP4.</h5>
+                        <h5>3. Open <b>{title}</b> and paste the video URL in our converter and click blue arrow-left button. After that you will be able to choose the download format.</h5>
                         <h5>4. We will try to convert the video in the best available quality. But be aware that it is only possible to download videos that are up to 90 minutes long, to guarantee that the conversion will be done within a few minutes.</h5>
                         <h5>5. As soon as the conversion of the video is completed you will see a Download button. Just click on it, and the download shall start.</h5>
                         <h5>With the usage of <b>{title}</b> you are accepting our Terms of Use.</h5>
