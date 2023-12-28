@@ -88,7 +88,11 @@ const Home: React.FC = () => {
             const link = document.createElement('a');
             link.href = url;
             console.log("url", url);
-            link.setAttribute('download', `${youtubeInfo?.title.replace(/ /g, '_').replace(/ +/g, "_").replace(/[^a-zA-Z0-9_.-]/g, '_')}.${mediaType}`);
+            if (mediaType === 'mp3') {
+                link.setAttribute('download', `${youtubeInfo?.title.replace(/ /g, '_').replace(/ +/g, "_").replace(/[^a-zA-Z0-9_.-]/g, '_').replace(/\.webm$/, '.mp3')}.${mediaType}`);
+            } else {
+                link.setAttribute('download', `${youtubeInfo?.title.replace(/ /g, '_').replace(/ +/g, "_").replace(/[^a-zA-Z0-9_.-]/g, '_')}.${mediaType}`);
+            }
             document.body.appendChild(link);
             link.click();
 
